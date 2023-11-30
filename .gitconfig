@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[user]
+	name = Daniel Rangel
+	email = 000.drf@gmail.com
