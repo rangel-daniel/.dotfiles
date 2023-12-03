@@ -25,7 +25,7 @@ lsp_zero.format_mapping("<leader>f", {
 		timeout_ms = 10000,
 	},
 	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua", "python", "css", "json" },
+		["null-ls"] = { "javascript", "typescript", "lua", "python", "css", "json", "python"},
 	},
 })
 
@@ -70,6 +70,7 @@ null_ls.setup({
 	sources = {
 		--- Replace these with the tools you have installed
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.prettierd.with({
 			extra_args = { "--single-quote", "--tab-width=4" },
 		}),
