@@ -6,8 +6,6 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 lsp_zero.set_sign_icons({
 	error = "",
 	warn = "󰀪",
@@ -19,17 +17,23 @@ lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
+require("luasnip.loaders.from_vscode").lazy_load()
 lsp_zero.format_mapping("<leader>f", {
 	format_opts = {
 		async = false,
 		timeout_ms = 10000,
 	},
 	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua", "python", "css", "json", "python"},
+		["null-ls"] = { "javascript", "typescript", "lua", "python", "css", "json", "python", "markdown" },
 	},
 })
 
 cmp.setup({
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
